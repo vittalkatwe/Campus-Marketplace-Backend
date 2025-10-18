@@ -1,8 +1,11 @@
 package org.example.campusmarketplace.model;
 
 import jakarta.persistence.*;
+import org.example.campusmarketplace.entities.Community;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class AppUser {
@@ -20,6 +23,8 @@ public class AppUser {
     private boolean enabled = false;
     private String bio;
     private String profilePicUrl;
+
+
 //
 //    // Location for "nearby users" feature
 //    private Double latitude;
