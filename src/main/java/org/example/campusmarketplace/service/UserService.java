@@ -5,6 +5,8 @@ package org.example.campusmarketplace.service;
 import org.example.campusmarketplace.model.AppUser;
 import org.example.campusmarketplace.dto.chat.UserDto;
 import org.example.campusmarketplace.repo.UserRepo;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,15 @@ public class UserService { // Or simply add this to your existing AuthService if
 
     public UserService(UserRepo appUserRepo) {
         this.appUserRepo = appUserRepo;
+    }
+
+    public String getCurrentUserEmail() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName();
+    }
+
+    public AppUser getAppUserByEmail(String email) {
+        return appUserRepo.findByEmail(email).orElse(null);
     }
 
     public List<UserDto> searchUsersByEmailPartial(String emailPartial) {
