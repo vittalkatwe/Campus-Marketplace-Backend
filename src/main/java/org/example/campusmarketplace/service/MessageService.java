@@ -102,6 +102,12 @@ public class MessageService {
         return dto;
     }
 
+    public List<String> getDMContacts(String email) {
+        // Fetch distinct users you have sent/received messages with
+        return messageRepo.findDistinctChatPartners(email);
+    }
+
+
 
 
 }

@@ -1,9 +1,5 @@
 package org.example.campusmarketplace.dto.chat;
 
-// dto/chat/UserDto.java
-
-// You might already have a similar DTO in dto.auth
-// but a simpler one for search results might be better
 public class UserDto {
     private Long id;
     private String email;

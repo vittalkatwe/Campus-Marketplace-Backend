@@ -25,19 +25,7 @@ public class AppUser {
     private String profilePicUrl;
 
 
-//
-//    // Location for "nearby users" feature
-//    private Double latitude;
-//    private Double longitude;
-//
-//    // Relationships
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Post> posts;
-//
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Comment> comments;
-//
-//    private int avgUserRating;
+
 
 
     public AppUser() {}
