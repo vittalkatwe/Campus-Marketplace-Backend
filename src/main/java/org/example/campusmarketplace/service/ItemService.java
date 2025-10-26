@@ -2,8 +2,10 @@ package org.example.campusmarketplace.service;
 
 import org.example.campusmarketplace.dto.ItemDto;
 import org.example.campusmarketplace.entities.Item;
+import org.example.campusmarketplace.model.AppUser;
 import org.example.campusmarketplace.repo.ItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -41,8 +43,12 @@ public class ItemService {
 
 
     public Item getItemById(long id) {
-        return itemRepo.findItemById(id);
+        Item item=itemRepo.findItemById(id);
+        item.setViews(item.getViews() + 1);
+        return itemRepo.save(item);
+
     }
+
 
     public List<Item> getItemsByCategory(String category) {
         return itemRepo.findItemByCategory(category);
@@ -50,5 +56,10 @@ public class ItemService {
 
     public List<Item> getUserMeItems(String email) {
         return itemRepo.findItemsBySeller(email);
+    }
+
+    public List<Item> getItemsByUserId(int id) {
+        AppUser user=userService.getAppUserById(id);
+        return itemRepo.findItemsBySeller(user.getEmail());
     }
 }

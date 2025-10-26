@@ -15,4 +15,6 @@ public interface UserRepo extends JpaRepository<AppUser, Long> {
 
     @Query("select u from AppUser u where u.email like %?1%")
     List<AppUser> findByEmailContainingIgnoreCase(String emailPartial);
+
+    AppUser findAppUserById(int id);
 }

@@ -16,9 +16,11 @@ import java.util.stream.Collectors;
 public class UserService { // Or simply add this to your existing AuthService if it handles user details
 
     private final UserRepo appUserRepo;
+    private final UserRepo userRepo;
 
-    public UserService(UserRepo appUserRepo) {
+    public UserService(UserRepo appUserRepo, UserRepo userRepo) {
         this.appUserRepo = appUserRepo;
+        this.userRepo = userRepo;
     }
 
     public String getCurrentUserEmail() {
@@ -37,6 +39,10 @@ public class UserService { // Or simply add this to your existing AuthService if
                 .filter(user -> user.getEmail().toLowerCase().contains(emailPartial.toLowerCase()))
                 .map(user -> new UserDto(user.getId(), user.getEmail(), user.getProfilePicUrl()))
                 .collect(Collectors.toList());
+    }
+
+    public AppUser getAppUserById(int id) {
+        return userRepo.findAppUserById(id);
     }
 
     // You'll want to add a method to AppUserRepo:

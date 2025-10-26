@@ -4,6 +4,7 @@ import org.example.campusmarketplace.dto.ItemDto;
 import org.example.campusmarketplace.entities.Item;
 import org.example.campusmarketplace.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +27,15 @@ public class ItemController {
         return itemService.addItem(item);
     }
 
-    @GetMapping("user/{id}")
+    @Cacheable(value = "items")
+    @GetMapping("{id}")
     public Item getItemById(@PathVariable int id) {
         return itemService.getItemById(id);
+    }
+
+    @GetMapping("user/{id}")
+    public List<Item> getItemsByUserId(@PathVariable int id) {
+        return itemService.getItemsByUserId(id);
     }
 
     @GetMapping("category/{category}")

@@ -10,7 +10,9 @@ import java.util.List;
 @Repository
 public interface ItemRepo extends JpaRepository<Item, Long> {
 
-    @Query("select i from Item i where i.status=true")
+
+
+    @Query("select i from Item i where i.status=true and i.id=?1")
     Item findItemById(Long id);
 
     @Query("select i from Item i where i.category=?1 and i.status=true")
