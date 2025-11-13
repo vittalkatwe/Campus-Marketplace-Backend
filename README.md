@@ -97,7 +97,7 @@ spring.mail.properties.mail.smtp.starttls.enable=true
 ## Steps to run
 ```bash
 git clone https://github.com/vittalkatwe/Campus-Marketplace-Backend.git
-cd CampusMarketplace
+cd Campus-Marketplace-Backend
 mvn clean install
 mvn spring-boot:run
 ```
